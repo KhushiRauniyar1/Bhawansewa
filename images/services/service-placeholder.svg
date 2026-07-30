@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400" role="img" aria-label="SERVICE IMAGE placeholder">
+  <defs>
+    <pattern id="g" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M28 0H0V28" fill="none" stroke="#d3dbe8" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="#eef2f8"/>
+  <rect width="100%" height="100%" fill="url(#g)"/>
+  <rect x="1" y="1" width="598" height="398" fill="none" stroke="#b9c6de" stroke-width="2" stroke-dasharray="8 8" rx="12"/>
+  <text x="50%" y="48%" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="20" font-weight="600" fill="#5b7bab" letter-spacing="2">SERVICE IMAGE</text>
+  <text x="50%" y="56%" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="14" fill="#7c879b">600 × 400 · replace me</text>
+</svg>
