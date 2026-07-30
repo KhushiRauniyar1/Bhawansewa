@@ -1,0 +1,113 @@
+/* =========================================================================
+   BHAWAN SEWA — responsive.css  (flexbox layout)
+   Breakpoints:  ≤1080 laptop · ≤900 tablet · ≤640 mobile · ≤420 small
+   ========================================================================= */
+
+/* ---- Laptop ---- */
+@media (max-width: 1080px) {
+  .grid--4 > * { flex-basis: calc((100% - 2 * var(--gg)) / 3 - 1px); }
+  .process-step { flex-basis: calc((100% - 30px) / 2 - 1px); }
+  .process-step:nth-child(2) .step-num::after { display: none; }
+}
+
+/* ---- Tablet ---- */
+@media (max-width: 900px) {
+  :root { --header-h: 68px; }
+
+  /* Mobile navigation */
+  .nav-toggle { display: inline-flex; }
+  .nav {
+    position: fixed; inset: var(--header-h) 0 auto 0;
+    flex-direction: column; align-items: stretch; gap: .2rem;
+    background: rgba(255,255,255,.98);
+    backdrop-filter: blur(20px);
+    padding: 1rem var(--gutter) 1.6rem;
+    border-bottom: 1px solid var(--line);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-12px); opacity: 0; pointer-events: none;
+    transition: transform var(--dur) var(--ease), opacity var(--dur) var(--ease);
+    max-height: calc(100vh - var(--header-h)); overflow-y: auto;
+  }
+  .nav.is-open { transform: none; opacity: 1; pointer-events: auto; }
+  .nav-link { padding: .95rem 1rem; font-size: 1.02rem; border-radius: var(--r-md); }
+  .nav-link.is-active::after { display: none; }
+  .nav-link.is-active { background: var(--surface); }
+  .nav-cta { margin: .6rem 0 0; }
+  .nav-cta .btn { width: 100%; }
+
+  /* Hero stacks */
+  .hero-grid { flex-direction: column; gap: 44px; }
+  .hero-copy, .hero-visual { flex: 1 1 auto; width: 100%; }
+  .hero-visual { max-width: 480px; margin-inline: auto; order: -1; aspect-ratio: 5 / 4; }
+  .hero-lead { max-width: none; }
+
+  /* Two-up cards */
+  .grid--2 > *,
+  .grid--3 > *,
+  .grid--4 > * { flex-basis: calc((100% - var(--gg)) / 2 - 1px); }
+
+  .process-step { flex-basis: calc((100% - 30px) / 2 - 1px); }
+
+  .contact-split > *:first-child,
+  .contact-split > *:last-child { flex-basis: 100%; }
+
+  .footer-brand { flex-basis: 100%; }
+  .footer-top .footer-col { flex-basis: calc((100% - 28px) / 2 - 1px); }
+
+  .stat-band > * { flex-basis: calc((100% - 1.5rem) / 2 - 1px); }
+
+  .form-grid .field { flex-basis: 100%; }
+
+  /* Project detail — gallery starts tightening up before the phone breakpoint */
+  .pd-gallery { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.1rem; }
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 640px) {
+  .grid--2 > *,
+  .grid--3 > *,
+  .grid--4 > * { flex-basis: 100%; }
+  .process-step { flex-basis: 100%; }
+  .process-step .step-num::after { display: none !important; }
+  .hero-trust { gap: 1.2rem; }
+  .hero-actions .btn { width: 100%; }
+  .cta-actions .btn { width: 100%; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; }
+  .footer-legal { gap: 1rem; }
+  .brand-tag { display: none; }
+  .floating { right: 14px; bottom: 14px; }
+  .fab { width: 52px; height: 52px; }
+  .page-hero p, .section-lead { font-size: 1.08rem; }
+
+  /* Project detail — one photo per row, slightly taller crop reads better
+     as a single column, tighter gaps and smaller heading so it never
+     overflows a narrow screen. */
+  .pd-gallery { grid-template-columns: 1fr; gap: .9rem; }
+  .pd-gallery-item img { aspect-ratio: 4 / 3; }
+  .pd-info h1 { font-size: 1.5rem; }
+  .pd-back { margin-bottom: 1.1rem; font-size: .85rem; }
+}
+
+/* ---- Small phones ---- */
+@media (max-width: 420px) {
+  :root { --gutter: 18px; }
+  .footer-top .footer-col { flex-basis: 100%; }
+  .stat-band > * { flex-basis: calc((100% - 1.5rem) / 2 - 1px); }
+  .hero-title { font-size: 2.1rem; }
+}
+
+/* ---- Reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  *,*::before,*::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
+  .fab--wa::after { animation: none; }
+}
+
+/* ---- Print ---- */
+@media print {
+  .site-header, .site-footer, .floating, .cta-banner, .nav-toggle { display: none !important; }
+  body { color: #000; }
+}

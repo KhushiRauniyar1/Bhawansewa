@@ -1,0 +1,57 @@
+/* =========================================================================
+   BHAWAN SEWA — animations.css
+   Subtle, short scroll-reveal + entrance motion. Kept light so scrolling
+   stays smooth (no infinite loops, small transforms, short durations).
+   Driven by IntersectionObserver in js/animation.js (.is-inview).
+   ========================================================================= */
+
+/* Base reveal — small, quick */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity .5s var(--ease-out), transform .5s var(--ease-out);
+}
+[data-reveal].is-inview { opacity: 1; transform: none; }
+
+/* Variants */
+[data-reveal="fade"]  { transform: none; }
+[data-reveal="up"]    { transform: translateY(18px); }
+[data-reveal="left"]  { transform: translateX(-20px); }
+[data-reveal="right"] { transform: translateX(20px); }
+[data-reveal="zoom"]  { transform: scale(.97); }
+[data-reveal="left"].is-inview,
+[data-reveal="right"].is-inview,
+[data-reveal="zoom"].is-inview { transform: none; }
+
+/* Staggered children */
+[data-reveal-group] > * { opacity: 0; transform: translateY(16px); }
+[data-reveal-group].is-inview > * {
+  opacity: 1; transform: none;
+  transition: opacity .5s var(--ease-out), transform .5s var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 60ms);
+}
+
+/* Hero entrance — plays once on load */
+.hero [data-hero] {
+  opacity: 0; transform: translateY(14px);
+  animation: heroIn .6s var(--ease-out) forwards;
+}
+.hero [data-hero="1"] { animation-delay: .04s; }
+.hero [data-hero="2"] { animation-delay: .12s; }
+.hero [data-hero="3"] { animation-delay: .20s; }
+.hero [data-hero="4"] { animation-delay: .28s; }
+.hero [data-hero="5"] { animation-delay: .36s; }
+.hero-visual { opacity: 0; animation: heroIn .7s var(--ease-out) .18s forwards; }
+@keyframes heroIn { to { opacity: 1; transform: none; } }
+
+/* Counter numbers give a small pop when they finish */
+.counter.is-done { animation: pop .4s var(--ease-out); }
+@keyframes pop { 0%{transform:scale(1)} 45%{transform:scale(1.06)} 100%{transform:scale(1)} }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal],
+  [data-reveal-group] > *,
+  .hero [data-hero],
+  .hero-visual { opacity: 1 !important; transform: none !important; animation: none !important; }
+}
