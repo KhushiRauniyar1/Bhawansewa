@@ -22,7 +22,7 @@ window.SITE_CONFIG = {
 
      Until you set this, the normal request form (Formspree) is shown instead.
      ---------------------------------------------------------------------- */
-  calcom: "YOUR_CAL_USERNAME/free-consultation",
+  calcom: "https://cal.com/sagar-luitel-cdrv0r",
 
   /* ----------------------------------------------------------------------
      COMPANY IDENTITY
